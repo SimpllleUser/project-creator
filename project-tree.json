@@ -1,0 +1,30 @@
+{
+    "project": {
+        "directories": {
+            "src": {
+                "directories": {
+                    "config": {
+                        "files": {
+                            "config": ""
+                        }
+                    },
+                    "controllers": {},
+                    "db": {},
+                    "models": {},
+                    "routes": {},
+                    "services": {},
+                    "utils": {
+                        "imports": {
+                        }
+                    }
+                },
+                "files": {
+                    "app": {}
+                }
+            }
+        },
+        "env": "path to env file",
+        "packageJSON": "path to package",
+        "readme": "path to README"
+    }
+}
