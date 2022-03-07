@@ -7,6 +7,8 @@ const recource = {
 
 const projectStructure = {
     config: ['config', 'constants'],
+    db: ['config', 'index'],
+
 };
 
 const direcotiresOfProject = Object.keys(projectStructure);
