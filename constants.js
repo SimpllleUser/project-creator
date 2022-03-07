@@ -9,7 +9,7 @@ const projectStructure = {
     'is-src': ['app'],
     config: ['config', 'constants'],
     db: ['config', 'index'],
-
+    utils: ['AuthUtils', 'Logger', 'Utils']
 };
 
 const direcotiresOfProject = Object.keys(projectStructure);
