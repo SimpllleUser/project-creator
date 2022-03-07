@@ -9,6 +9,9 @@ const genrateByKeyObject = {
     'init-module': generateImports,
     'export-default': generateModuleExport,
     'static-code': generateStaticCode,
+    'app-use': generateImports,
+    'constants': generateImports,
+    'route-modules': generateImports,
 };
 
 module.exports = {

@@ -6,6 +6,7 @@ const recource = {
 };
 
 const projectStructure = {
+    'is-src': ['app'],
     config: ['config', 'constants'],
     db: ['config', 'index'],
 
