@@ -18,8 +18,6 @@ const runGeneratorCode = () => {
     Promise.all(direcotiresOfProject.map(async (dirName) => {
         Promise.all(projectStructure[dirName].map((fileName) => {
             const bodyPath = getBodyPath(dirName, fileName);
-            // console.log(`${recource.from}${bodyPath}.json`);
-            // console.log(`${recource.to}${bodyPath}.js`);
             generateCode(`${recource.from}${bodyPath}.json`, `${recource.to}${bodyPath}.js`)
         }));
     }));

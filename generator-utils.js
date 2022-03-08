@@ -1,4 +1,5 @@
 const { JSONtoStringJSON, arrayToLinesCode } = require('./utils');
+const { generateModel } = require('./generator-model');
 const generateImports = arrayToLinesCode;
 const generateInitImports = generateImports;
 const generateModuleExport = (json) => `export default ${JSONtoStringJSON(json)};`;
@@ -12,6 +13,7 @@ const genrateByKeyObject = {
     'app-use': generateImports,
     'constants': generateImports,
     'route-modules': generateImports,
+    'model': generateModel,
 };
 
 module.exports = {
