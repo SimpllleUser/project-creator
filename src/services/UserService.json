@@ -1,0 +1,98 @@
+{
+    "source-code": {
+        "service": [
+            {
+                "name": "getAll",
+                "params": [],
+                "types": [
+                    "static",
+                    "async"
+                ],
+                "model": {
+                    "name": "User",
+                    "method": {
+                        "types": [
+                            "async"
+                        ],
+                        "name": "findAll",
+                        "params": [],
+                        "resultTo": null
+                    }
+                }
+            },
+            {
+                "name": "addOne",
+                "params": [
+                    {
+                        "name": "newUser"
+                    }
+                ],
+                "types": [
+                    "static",
+                    "async"
+                ],
+                "model": {
+                    "name": "User",
+                    "method": {
+                        "types": [
+                            "async"
+                        ],
+                        "name": "create",
+                        "params": [
+                            {
+                                "name": "newUser"
+                            }
+                        ],
+                        "resultTo": null
+                    }
+                }
+            },
+            {
+                "name": "updateOne",
+                "params": [
+                    {
+                        "type": "variable",
+                        "name": "id"
+                    },
+                    {
+                        "type": "variable",
+                        "name": "updateUser"
+                    }
+                ],
+                "types": [
+                    "static",
+                    "async"
+                ],
+                "model": {
+                    "name": "User",
+                    "method": {
+                        "types": [
+                            "async"
+                        ],
+                        "name": "update",
+                        "params": [
+                            {
+                                "type": "variable",
+                                "name": "updateUser"
+                            },
+                            {
+                                "type": "object",
+                                "structure": {
+                                    "where": {
+                                        "id": "id"
+                                    }
+                                }
+                            }
+                        ],
+                        "resultTo": {
+                           "variable": {
+                            "type": "const",
+                            "name": "userToUpdate"
+                           }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
