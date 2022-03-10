@@ -1,7 +1,8 @@
 
 const { readFile, writeFile } = require('fs').promises;
 const { getPathJoin, JSONtoStringJSON } = require('./utils');
-const { generateCallMethodFromModel } = require('./generator-method-utils');
+const { generateCondition } = require('./condition');
+const { generateCallMethodFromModel, getMethodArguments, getMethodTypes } = require('./generator-method-utils');
 
 
 const tryCatchWrapper = (code) => `try {
@@ -11,6 +12,10 @@ const tryCatchWrapper = (code) => `try {
     }
 `;
 
+const typeGeneratesCode = {
+    "conditions": generateCondition,
+    "model": generateCallMethodFromModel,
+};
 
 const generateServiceMethod = ({
     name,
@@ -18,8 +23,8 @@ const generateServiceMethod = ({
     params,
     actions }) => {
     const calledActions = actions
-        .map(({ model }) => generateCallMethodFromModel(model))
-        .join(';'); 
+        .map((action) => typeGeneratesCode[action.type](action[action.type]) )
+        .join(''); 
     return `
     ${getMethodTypes(types)} ${name}(${getMethodArguments(params)}) {
         ${tryCatchWrapper(calledActions)}}`;

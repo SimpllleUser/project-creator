@@ -24,4 +24,6 @@ const getResultOfMethod = (resultTo) => {
 
 module.exports = {
     generateCallMethodFromModel,
+    getMethodArguments,
+    getMethodTypes,
 }

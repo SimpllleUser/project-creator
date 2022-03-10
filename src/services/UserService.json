@@ -73,6 +73,7 @@
                 ],
                 "actions": [
                     {
+                        "type": "model",
                         "model": {
                             "name": "User",
                             "method": {
@@ -101,7 +102,10 @@
                                     }
                                 }
                             }
-                        },
+                        }
+                    },
+                    {
+                        "type": "conditions",
                         "conditions": {
                             "params": [
                                 {
