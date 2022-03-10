@@ -8,17 +8,21 @@
                     "static",
                     "async"
                 ],
-                "model": {
-                    "name": "User",
-                    "method": {
-                        "types": [
-                            "async"
-                        ],
-                        "name": "findAll",
-                        "params": [],
-                        "resultTo": null
+                "actions": [
+                    {
+                        "model": {
+                            "name": "User",
+                            "method": {
+                                "types": [
+                                    "async"
+                                ],
+                                "name": "findAll",
+                                "params": [],
+                                "resultTo": null
+                            }
+                        }
                     }
-                }
+                ]
             },
             {
                 "name": "addOne",
@@ -31,21 +35,25 @@
                     "static",
                     "async"
                 ],
-                "model": {
-                    "name": "User",
-                    "method": {
-                        "types": [
-                            "async"
-                        ],
-                        "name": "create",
-                        "params": [
-                            {
-                                "name": "newUser"
+                "actions": [
+                    {
+                        "model": {
+                            "name": "User",
+                            "method": {
+                                "types": [
+                                    "async"
+                                ],
+                                "name": "create",
+                                "params": [
+                                    {
+                                        "name": "newUser"
+                                    }
+                                ],
+                                "resultTo": null
                             }
-                        ],
-                        "resultTo": null
+                        }
                     }
-                }
+                ]
             },
             {
                 "name": "updateOne",
@@ -63,35 +71,78 @@
                     "static",
                     "async"
                 ],
-                "model": {
-                    "name": "User",
-                    "method": {
-                        "types": [
-                            "async"
-                        ],
-                        "name": "update",
-                        "params": [
-                            {
-                                "type": "variable",
-                                "name": "updateUser"
-                            },
-                            {
-                                "type": "object",
-                                "structure": {
-                                    "where": {
-                                        "id": "id"
+                "actions": [
+                    {
+                        "model": {
+                            "name": "User",
+                            "method": {
+                                "types": [
+                                    "async"
+                                ],
+                                "name": "findOne",
+                                "params": [
+                                    {
+                                        "type": "variable",
+                                        "name": "updateUser"
+                                    },
+                                    {
+                                        "type": "object",
+                                        "structure": {
+                                            "where": {
+                                                "id": "id"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "resultTo": {
+                                    "variable": {
+                                        "type": "const",
+                                        "name": "userToUpdate"
                                     }
                                 }
                             }
-                        ],
-                        "resultTo": {
-                           "variable": {
-                            "type": "const",
-                            "name": "userToUpdate"
-                           }
+                        },
+                        "conditions": {
+                            "params": [
+                                {
+                                    "type": "parameter",
+                                    "prefix": "",
+                                    "name": "userToUpdate"
+                                }
+                            ],
+                            "isTrue": {
+                                "actions": [
+                                    {
+                                        "model": {
+                                            "name": "User",
+                                            "method": {
+                                                "types": [
+                                                    "async"
+                                                ],
+                                                "name": "update",
+                                                "params": [
+                                                    {
+                                                        "type": "variable",
+                                                        "name": "updateUser"
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "structure": {
+                                                            "where": {
+                                                                "id": "id"
+                                                            }
+                                                        }
+                                                    }
+                                                ],
+                                                "resultTo": null
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
                         }
                     }
-                }
+                ]
             }
         ]
     }

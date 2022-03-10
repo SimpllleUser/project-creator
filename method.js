@@ -1,43 +1,28 @@
 
 const { readFile, writeFile } = require('fs').promises;
 const { getPathJoin, JSONtoStringJSON } = require('./utils');
+const { generateCallMethodFromModel } = require('./generator-method-utils');
 
-const typeOfArguments = {
-    "variable": (argument) => argument.name,
-    "object": (argument) => JSONtoStringJSON(argument.structure),
-}
-
-const getMethodTypes = (types) => types.join(' ');
-const getArgumnet = (parameterArgument) => typeOfArguments[parameterArgument.type](parameterArgument);
-const getMethodArguments = (types) => types.map((argumentOption) => getArgumnet(argumentOption)).join(',');
-const getResultOfMethod = (resultTo) => {
-    if (!resultTo) return 'return';
-    const { variable } = resultTo;
-    return` ${variable.type} ${variable.name} = `; 
-};
-
-const generateCallMethodFromModel = ({ name, method }) => {
-    return `${getResultOfMethod(method.resultTo)}` +
-     ` ${getMethodTypes(method.types)}`+
-     ` database.${name}.${method.name}`+
-     `(${getMethodArguments(method.params)});`;
-};
 
 const tryCatchWrapper = (code) => `try {
         ${code}
     } catch(error) { 
         throw error
     }
-` 
+`;
+
 
 const generateServiceMethod = ({
     name,
     types,
     params,
-    model }) => {
+    actions }) => {
+    const calledActions = actions
+        .map(({ model }) => generateCallMethodFromModel(model))
+        .join(';'); 
     return `
     ${getMethodTypes(types)} ${name}(${getMethodArguments(params)}) {
-        ${tryCatchWrapper(generateCallMethodFromModel(model))}}`;
+        ${tryCatchWrapper(calledActions)}}`;
 }
 
 (async () => {
