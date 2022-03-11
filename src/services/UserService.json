@@ -15,7 +15,7 @@
                             "name": "User",
                             "method": {
                                 "types": [
-                                    "async"
+                                    "await"
                                 ],
                                 "name": "findAll",
                                 "params": [],
@@ -44,7 +44,7 @@
                             "name": "User",
                             "method": {
                                 "types": [
-                                    "async"
+                                    "await"
                                 ],
                                 "name": "create",
                                 "params": [
@@ -82,7 +82,7 @@
                             "name": "User",
                             "method": {
                                 "types": [
-                                    "async"
+                                    "await"
                                 ],
                                 "name": "findOne",
                                 "params": [
@@ -125,7 +125,7 @@
                                             "name": "User",
                                             "method": {
                                                 "types": [
-                                                    "async"
+                                                    "await"
                                                 ],
                                                 "name": "update",
                                                 "params": [
@@ -133,6 +133,167 @@
                                                         "type": "variable",
                                                         "name": "updateUser"
                                                     },
+                                                    {
+                                                        "type": "object",
+                                                        "structure": {
+                                                            "where": {
+                                                                "id": "id"
+                                                            }
+                                                        }
+                                                    }
+                                                ],
+                                                "resultTo": null
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "getOne",
+                "params": [
+                    {
+                        "type": "variable",
+                        "name": "id"
+                    }
+                ],
+                "types": [
+                    "static",
+                    "async"
+                ],
+                "actions": [
+                    {
+                        "type": "model",
+                        "model": {
+                            "name": "User",
+                            "method": {
+                                "types": [
+                                    "await"
+                                ],
+                                "name": "findOne",
+                                "params": [
+                                    {
+                                        "type": "object",
+                                        "structure": {
+                                            "where": {
+                                                "id": "id"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "resultTo": null
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "getOneByUsername",
+                "params": [
+                    {
+                        "type": "variable",
+                        "name": "username"
+                    }
+                ],
+                "types": [
+                    "static",
+                    "async"
+                ],
+                "actions": [
+                    {
+                        "type": "model",
+                        "model": {
+                            "name": "User",
+                            "method": {
+                                "types": [
+                                    "await"
+                                ],
+                                "name": "findOne",
+                                "params": [
+                                    {
+                                        "type": "object",
+                                        "structure": {
+                                            "where": {
+                                                "username": "username"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "resultTo": null
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "deleteOne",
+                "params": [
+                    {
+                        "type": "variable",
+                        "name": "id"
+                    }
+                ],
+                "types": [
+                    "static",
+                    "async"
+                ],
+                "actions": [
+                    {
+                        "type": "model",
+                        "model": {
+                            "name": "User",
+                            "method": {
+                                "types": [
+                                    "await"
+                                ],
+                                "name": "findOne",
+                                "params": [
+                                    {
+                                        "type": "variable",
+                                        "name": "updateUser"
+                                    },
+                                    {
+                                        "type": "object",
+                                        "structure": {
+                                            "where": {
+                                                "id": "id"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "resultTo": {
+                                    "variable": {
+                                        "type": "const",
+                                        "name": "userToDelete "
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "conditions",
+                        "conditions": {
+                            "params": [
+                                {
+                                    "type": "parameter",
+                                    "prefix": "",
+                                    "name": "userToDelete "
+                                }
+                            ],
+                            "isTrue": {
+                                "actions": [
+                                    {
+                                        "model": {
+                                            "name": "User",
+                                            "method": {
+                                                "types": [
+                                                    "await"
+                                                ],
+                                                "name": "destroy",
+                                                "params": [
                                                     {
                                                         "type": "object",
                                                         "structure": {

@@ -1,32 +1,72 @@
 
     static async getAll() {
-        try {
-        return async database.User.findAll();
-    } catch(error) { 
+    try {
+        return await database.User.findAll();
+    } catch (error) {
         throw error
     }
 }, 
     static async addOne(newUser) {
-        try {
-        return async database.User.create(newUser);
-    } catch(error) { 
+    try {
+        return await database.User.create(newUser);
+    } catch (error) {
         throw error
     }
 }, 
-    static async updateOne(id,updateUser) {
-        try {
-         const userToUpdate =  async database.User.findOne(updateUser,{
-    where: {
-        id: id
+    static async updateOne(id, updateUser) {
+    try {
+        const userToUpdate = await database.User.findOne(updateUser, {
+            where: {
+                id: id
+            }
+        }); if (userToUpdate) {
+            return await database.User.update(updateUser, {
+                where: {
+                    id: id
+                }
+            });
+        }
+    } catch (error) {
+        throw error
     }
-});if(userToUpdate) {
-        return async database.User.update(updateUser,{
-    where: {
-        id: id
+}, 
+    static async getOne(id) {
+    try {
+        return await database.User.findOne({
+            where: {
+                id: id
+            }
+        });
+    } catch (error) {
+        throw error
     }
-});
-    } 
-    } catch(error) { 
+}, 
+    static async getOneByUsername(username) {
+    try {
+        return await database.User.findOne({
+            where: {
+                username: username
+            }
+        });
+    } catch (error) {
+        throw error
+    }
+}, 
+    static async deleteOne(id) {
+    try {
+        const userToDelete = await database.User.findOne(updateUser, {
+            where: {
+                id: id
+            }
+        }); 
+        if (userToDelete) {
+            return await database.User.destroy({
+                where: {
+                    id: id
+                }
+            });
+        }
+    } catch (error) {
         throw error
     }
 }
