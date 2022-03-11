@@ -10,6 +10,7 @@
                 ],
                 "actions": [
                     {
+                        "type": "model",
                         "model": {
                             "name": "User",
                             "method": {
@@ -28,6 +29,7 @@
                 "name": "addOne",
                 "params": [
                     {
+                        "type": "variable",
                         "name": "newUser"
                     }
                 ],
@@ -37,6 +39,7 @@
                 ],
                 "actions": [
                     {
+                        "type": "model",
                         "model": {
                             "name": "User",
                             "method": {
@@ -46,6 +49,7 @@
                                 "name": "create",
                                 "params": [
                                     {
+                                        "type": "variable",
                                         "name": "newUser"
                                     }
                                 ],

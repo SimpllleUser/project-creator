@@ -23,8 +23,8 @@ const generateServiceMethod = ({
     params,
     actions }) => {
     const calledActions = actions
-        .map((action) => typeGeneratesCode[action.type](action[action.type]) )
-        .join(''); 
+        .map((action) => typeGeneratesCode[action.type](action[action.type]))
+        .join('');
     return `
     ${getMethodTypes(types)} ${name}(${getMethodArguments(params)}) {
         ${tryCatchWrapper(calledActions)}}`;
@@ -35,6 +35,6 @@ const generateServiceMethod = ({
     const serviceFile = await readFile(getPathJoin('/src/services/UserService.json'));
     const serviceJSON = JSON.parse(serviceFile);
     const { service } = serviceJSON['source-code'];
-    const [getAll, addOne, updateOne] = service;
-    console.log(generateServiceMethod(updateOne));
+    const serviceMethods = service.map((method) => generateServiceMethod(method)).join(', ');
+    writeFile('./src/services/UserService.js', serviceMethods);
 })()
