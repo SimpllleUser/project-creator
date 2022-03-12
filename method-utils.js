@@ -22,8 +22,15 @@ const getResultOfMethod = (resultTo) => {
     return` ${variable.type} ${variable.name} = `; 
 };
 
+const tryCatchWrapper = (code) => `try {
+    ${code}
+} catch(error) { 
+    throw error
+}`;
+
 module.exports = {
     generateCallMethodFromModel,
     getMethodArguments,
     getMethodTypes,
+    tryCatchWrapper,
 }

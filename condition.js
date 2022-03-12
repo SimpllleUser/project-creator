@@ -1,4 +1,4 @@
-const { generateCallMethodFromModel } = require('./generator-method-utils');
+const { generateCallMethodFromModel } = require('./method-utils');
 
 const symbols = {
     and: '&&',
