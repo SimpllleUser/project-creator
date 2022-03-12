@@ -15,6 +15,12 @@ const generateCallMethodFromModel = ({ name, method }) => {
      ` database.${name}.${method.name}`+
      `(${getMethodArguments(method.params)});`;
 };
+const generateCallMethodFromRouter = ({ name, method }) => {
+    return `${getResultOfMethod(method.resultTo)}` +
+     ` ${getMethodTypes(method.types)}`+
+     ` database.${name}.${method.name}`+
+     `(${getMethodArguments(method.params)});`;
+};
 
 const getResultOfMethod = (resultTo) => {
     if (!resultTo) return 'return';
