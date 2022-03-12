@@ -10,7 +10,8 @@ const projectStructure = {
     config: ['config', 'constants'],
     db: ['config', 'index'],
     utils: ['AuthUtils', 'Logger', 'Utils'],
-    models: ['User']
+    models: ['User'],
+    services: ['UserService'],
 };
 
 const direcotiresOfProject = Object.keys(projectStructure);
