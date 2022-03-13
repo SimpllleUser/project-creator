@@ -2,7 +2,9 @@ const { generateCallMethodFromModel } = require('./method-utils');
 
 const symbols = {
     and: '&&',
-    or: '||'
+    or: '||',
+    more: '>',
+    less: '<'
 };
 
 const types =  {

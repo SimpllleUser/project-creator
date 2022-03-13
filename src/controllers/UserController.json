@@ -1,0 +1,73 @@
+{
+    "source-code": {
+        "controller": {
+            "name": "UserController",
+            "methods": [
+                {
+                    "name": "getAll",
+                    "params": [
+                        {
+                            "type": "variable",
+                            "name": "req"
+                        },
+                        {
+                            "type": "variable",
+                            "name": "res"
+                        }
+                    ],
+                    "types": [
+                        "static",
+                        "async"
+                    ],
+                    "actions": [
+                        {
+                            "type": "model",
+                            "model": {
+                                "name": "UserService",
+                                "method": {
+                                    "types": [
+                                        "await"
+                                    ],
+                                    "name": "getAll",
+                                    "params": [],
+                                    "resultTo": {
+                                        "variable": {
+                                            "type": "const",
+                                            "name": "allUsers "
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "conditions",
+                            "conditions": {
+                                "params": [
+                                    {
+                                        "type": "parameter",
+                                        "prefix": "",
+                                        "name": "allUsers.length"
+                                    },
+                                    {
+                                        "type": "operator",
+                                        "name": "more"
+                                    },
+                                    {
+                                        "type": "parameter",
+                                        "prefix": "",
+                                        "name": 0
+                                    }
+                                ]
+                            },
+                            "isTrue": {
+                                "actions": [
+                                    
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

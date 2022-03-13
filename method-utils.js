@@ -9,17 +9,22 @@ const getArgumnet = (parameterArgument) => typeOfArguments[parameterArgument.typ
 const getMethodTypes = (types) => types.join(' ');
 const getMethodArguments = (types) => types.map((argumentOption) => getArgumnet(argumentOption)).join(',');
 
+// !REFACTOR method like => generateCallMethodFromService !
 const generateCallMethodFromModel = ({ name, method }) => {
     return `${getResultOfMethod(method.resultTo)}` +
      ` ${getMethodTypes(method.types)}`+
      ` database.${name}.${method.name}`+
      `(${getMethodArguments(method.params)});`;
 };
-const generateCallMethodFromRouter = ({ name, method }) => {
-    return `${getResultOfMethod(method.resultTo)}` +
-     ` ${getMethodTypes(method.types)}`+
-     ` database.${name}.${method.name}`+
-     `(${getMethodArguments(method.params)});`;
+
+const generateCallMethodFromService = ({ name, method }) => {
+    const result = getResultOfMethod(method.resultTo);
+    const type = getMethodTypes(method.types);
+    const serviceName = name;
+    const serviceMethodName = method.name;
+    const args = getMethodArguments(method.params);
+
+    return `${result} ${type} ${serviceName}.${serviceMethodName}(${args})`;
 };
 
 const getResultOfMethod = (resultTo) => {
@@ -36,6 +41,7 @@ const tryCatchWrapper = (code) => `try {
 
 module.exports = {
     generateCallMethodFromModel,
+    generateCallMethodFromService,
     getMethodArguments,
     getMethodTypes,
     tryCatchWrapper,
