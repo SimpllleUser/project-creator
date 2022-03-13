@@ -1,15 +1,16 @@
-
-const { readFile, writeFile } = require('fs').promises;
-const { getPathJoin, JSONtoStringJSON } = require('./utils');
 const { generateCondition } = require('./condition');
-const { generateCallMethodFromModel,
+const { 
+    generateCallMethodFromModel,
+    generateCallMethodFromService,
     getMethodArguments,
     getMethodTypes,
-    tryCatchWrapper } = require('./method-utils');
+    tryCatchWrapper,
+    controllerTryCatchWrapper } = require('./method-utils');
 
 const typeGeneratesCode = {
     "conditions": generateCondition,
     "model": generateCallMethodFromModel,
+    "service": generateCallMethodFromService,
 };
 
 const generateServiceMethod = ({
@@ -24,7 +25,20 @@ return `
     ${getMethodTypes(types)} ${name}(${getMethodArguments(params)}) {
         ${tryCatchWrapper(calledActions)}}`;
 }
+const generateControllerMethod = ({
+    name,
+    types,
+    params,
+    actions }) => {
+    const calledActions = actions
+        .map((action) => typeGeneratesCode[action.type](action[action.type]))
+        .join('');
+return `
+    ${getMethodTypes(types)} ${name}(${getMethodArguments(params)}) {
+        ${controllerTryCatchWrapper(calledActions)}}`;
+}
 
 module.exports = {
-    generateServiceMethod
+    generateServiceMethod,
+    generateControllerMethod
 };

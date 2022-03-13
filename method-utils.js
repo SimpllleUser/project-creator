@@ -29,8 +29,9 @@ const generateCallMethodFromService = ({ name, method }) => {
 
 const getResultOfMethod = (resultTo) => {
     if (!resultTo) return 'return';
-    const { variable } = resultTo;
-    return` ${variable.type} ${variable.name} = `; 
+    if (resultTo === 'none') return '';
+    const { name, type } = resultTo?.variable;
+    return` ${type} ${name} = `; 
 };
 
 const tryCatchWrapper = (code) => `try {
@@ -39,10 +40,18 @@ const tryCatchWrapper = (code) => `try {
     throw error
 }`;
 
+const controllerTryCatchWrapper = (code) => `try {
+    ${code}
+} catch(error) { 
+    util.setError(400, error.message);
+    return util.send(res);
+}`;
+
 module.exports = {
     generateCallMethodFromModel,
     generateCallMethodFromService,
     getMethodArguments,
     getMethodTypes,
     tryCatchWrapper,
+    controllerTryCatchWrapper,
 }

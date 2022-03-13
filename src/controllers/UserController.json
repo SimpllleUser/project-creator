@@ -1,5 +1,13 @@
 {
     "source-code": {
+        "imports": [
+            "import UserService from '../services/UserService'",
+            "import Util from '../utils/Utils'",
+            "import AuthUtils from '../utils/AuthUtils'"
+        ],
+        "init-module": [
+            "const util = new Util()"
+        ],
         "controller": {
             "name": "UserController",
             "methods": [
@@ -21,8 +29,8 @@
                     ],
                     "actions": [
                         {
-                            "type": "model",
-                            "model": {
+                            "type": "service",
+                            "service": {
                                 "name": "UserService",
                                 "method": {
                                     "types": [
@@ -57,15 +65,101 @@
                                         "prefix": "",
                                         "name": 0
                                     }
-                                ]
-                            },
-                            "isTrue": {
-                                "actions": [
-                                    
-                                ]
+                                ],
+                                "isTrue": {
+                                    "actions-controller": [
+                                        {
+                                            "type": "service",
+                                            "service": {
+                                                "name": "util",
+                                                "method": {
+                                                    "types": [],
+                                                    "name": "setSuccess",
+                                                    "params": [
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "200"
+                                                        },
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "'User retrieved'"
+                                                        },
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "allUsers "
+                                                        }
+                                                    ],
+                                                    "resultTo": "none"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "isFalse": {
+                                    "actions-controller": [
+                                        {
+                                            "type": "service",
+                                            "service": {
+                                                "name": "util",
+                                                "method": {
+                                                    "types": [],
+                                                    "name": "setSuccess",
+                                                    "params": [
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "200"
+                                                        },
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "'Not found'"
+                                                        }
+                                                    ],
+                                                    "resultTo": "none"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "res"
+                                        }
+                                    ],
+                                    "resultTo": null
+                                }
                             }
                         }
                     ]
+                },
+                {
+                    "name": "addOne",
+                    "params": [
+                        {
+                            "type": "variable",
+                            "name": "req"
+                        },
+                        {
+                            "type": "variable",
+                            "name": "res"
+                        }
+                    ],
+                    "types": [
+                        "static",
+                        "async"
+                    ],
+                    "actions": [{
+                        
+                    }]
                 }
             ]
         }

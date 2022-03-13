@@ -22,7 +22,8 @@
     where: {
         id: id
     }
-});if(userToUpdate) {
+});
+    if(userToUpdate) {
         return await database.User.update(updateUser,{
     where: {
         id: id
@@ -61,7 +62,8 @@
     where: {
         id: id
     }
-});if(userToDelete ) {
+});
+    if(userToDelete ) {
         return await database.User.destroy({
     where: {
         id: id
