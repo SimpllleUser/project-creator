@@ -157,9 +157,348 @@
                         "static",
                         "async"
                     ],
-                    "actions": [{
-                        
-                    }]
+                    "actions": [
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "AuthUtils",
+                                "method": {
+                                    "types": [
+                                        "await"
+                                    ],
+                                    "name": "generatePasswordHash",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "req.body.password"
+                                        }
+                                    ],
+                                    "resultTo": {
+                                        "variable": {
+                                            "type": "",
+                                            "name": "req.body.password"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "UserService",
+                                "method": {
+                                    "types": [
+                                        "await"
+                                    ],
+                                    "name": "addOne",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "req.body"
+                                        }
+                                    ],
+                                    "resultTo": {
+                                        "variable": {
+                                            "type": "const",
+                                            "name": "createdUser"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "201"
+                                        },
+                                        {
+                                            "type": "variable",
+                                            "name": "'User added!'"
+                                        },
+                                        {
+                                            "type": "variable",
+                                            "name": "createdUser"
+                                        }
+                                    ],
+                                    "resultTo": "none"
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "res"
+                                        }
+                                    ],
+                                    "resultTo": null
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "updateOne",
+                    "params": [
+                        {
+                            "type": "variable",
+                            "name": "req"
+                        },
+                        {
+                            "type": "variable",
+                            "name": "res"
+                        }
+                    ],
+                    "types": [
+                        "static",
+                        "async"
+                    ],
+                    "actions": [
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "UserService",
+                                "method": {
+                                    "types": [
+                                        "await"
+                                    ],
+                                    "name": "updateOne",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "req.body.id"
+                                        },
+                                        {
+                                            "type": "variable",
+                                            "name": "req.body"
+                                        }
+                                    ],
+                                    "resultTo": {
+                                        "variable": {
+                                            "type": "const",
+                                            "name": "updatedUser"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "201"
+                                        },
+                                        {
+                                            "type": "variable",
+                                            "name": "'Updated  user added!'"
+                                        },
+                                        {
+                                            "type": "variable",
+                                            "name": "updatedUser"
+                                        }
+                                    ],
+                                    "resultTo": "none"
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "res"
+                                        }
+                                    ],
+                                    "resultTo": null
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getOne",
+                    "params": [
+                        {
+                            "type": "variable",
+                            "name": "req"
+                        },
+                        {
+                            "type": "variable",
+                            "name": "res"
+                        }
+                    ],
+                    "types": [
+                        "static",
+                        "async"
+                    ],
+                    "actions": [
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "UserService",
+                                "method": {
+                                    "types": [
+                                        "await"
+                                    ],
+                                    "name": "getOne",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "req.body.id"
+                                        }
+                                    ],
+                                    "resultTo": {
+                                        "variable": {
+                                            "type": "const",
+                                            "name": "theUser"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "200"
+                                        },
+                                        {
+                                            "type": "variable",
+                                            "name": "'Found user!'"
+                                        },
+                                        {
+                                            "type": "variable",
+                                            "name": "theUser"
+                                        }
+                                    ],
+                                    "resultTo": "none"
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "res"
+                                        }
+                                    ],
+                                    "resultTo": null
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "deleteOne",
+                    "params": [
+                        {
+                            "type": "variable",
+                            "name": "req"
+                        },
+                        {
+                            "type": "variable",
+                            "name": "res"
+                        }
+                    ],
+                    "types": [
+                        "static",
+                        "async"
+                    ],
+                    "actions": [
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "UserService",
+                                "method": {
+                                    "types": [
+                                        "await"
+                                    ],
+                                    "name": "deleteOne",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "req.body.id"
+                                        }
+                                    ],
+                                    "resultTo": "none"
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "200"
+                                        },
+                                        {
+                                            "type": "variable",
+                                            "name": "'Deleted user!'"
+                                        }
+                                    ],
+                                    "resultTo": "none"
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "res"
+                                        }
+                                    ],
+                                    "resultTo": null
+                                }
+                            }
+                        }
+                    ]
                 }
             ]
         }

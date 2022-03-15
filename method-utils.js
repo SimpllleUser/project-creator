@@ -24,7 +24,7 @@ const generateCallMethodFromService = ({ name, method }) => {
     const serviceMethodName = method.name;
     const args = getMethodArguments(method.params);
 
-    return `${result} ${type} ${serviceName}.${serviceMethodName}(${args})`;
+    return `${result} ${type} ${serviceName}.${serviceMethodName}(${args});\n`;
 };
 
 const getResultOfMethod = (resultTo) => {
