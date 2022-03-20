@@ -1,0 +1,186 @@
+{
+    "source-code": {
+        "imports": [
+            "import UserService from '../services/UserService'",
+            "import Util from '../utils/Utils'",
+            "import AuthUtils from '../utils/AuthUtils'"
+        ],
+        "init-module": [
+            "const util = new Util()"
+        ],
+        "controller": {
+            "name": "AuthController",
+            "methods": [
+                {
+                    "name": "login",
+                    "params": [
+                        {
+                            "type": "variable",
+                            "name": "req"
+                        },
+                        {
+                            "type": "variable",
+                            "name": "res"
+                        }
+                    ],
+                    "types": [
+                        "static",
+                        "async"
+                    ],
+                    "actions": [
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "UserService",
+                                "method": {
+                                    "types": [
+                                        "await"
+                                    ],
+                                    "name": "getOneByUserName",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "req.body.username"
+                                        }
+                                    ],
+                                    "resultTo": {
+                                        "variable": {
+                                            "type": "const",
+                                            "name": "theUser"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "conditions",
+                            "conditions": {
+                                "params": [
+                                    {
+                                        "type": "parameter",
+                                        "prefix": "",
+                                        "name": "theUser"
+                                    }
+                                ],
+                                "isTrue": {
+                                    "actions": [
+                                        {
+                                            "type": "service",
+                                            "service": {
+                                                "name": "AuthUtils",
+                                                "method": {
+                                                    "types": [
+                                                        "await"
+                                                    ],
+                                                    "name": "checkPassword",
+                                                    "params": [
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "req.body.pasword"
+                                                        },
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "theUser.password"
+                                                        }
+                                                    ],
+                                                    "resultTo": {
+                                                        "variable": {
+                                                            "type": "const",
+                                                            "name": "valid"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "conditions",
+                                            "conditons": {
+                                                "params": [
+                                                    {
+                                                        "type": "parameter",
+                                                        "prefix": "",
+                                                        "name": "valid"
+                                                    }
+                                                ],
+                                                "isTrue": {
+                                                    "actions-controller": [
+                                                        {
+                                                            "type": "service",
+                                                            "service": {
+                                                                "name": "AuthUtils",
+                                                                "method": {
+                                                                    "types": [
+                                                                        "await"
+                                                                    ],
+                                                                    "name": "generateJwtToken",
+                                                                    "params": [
+                                                                        {
+                                                                            "type": "variable",
+                                                                            "name": "theUser"
+                                                                        }
+                                                                    ],
+                                                                    "resultTo": {
+                                                                        "variable": {
+                                                                            "type": "const",
+                                                                            "name": "token"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "isFalse": {
+                                    "actions-controller": [
+                                        {
+                                            "type": "service",
+                                            "service": {
+                                                "name": "util",
+                                                "method": {
+                                                    "types": [],
+                                                    "name": "setSuccess",
+                                                    "params": [
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "200"
+                                                        },
+                                                        {
+                                                            "type": "variable",
+                                                            "name": "'Not found'"
+                                                        }
+                                                    ],
+                                                    "resultTo": "none"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "type": "service",
+                            "service": {
+                                "name": "util",
+                                "method": {
+                                    "types": [],
+                                    "name": "send",
+                                    "params": [
+                                        {
+                                            "type": "variable",
+                                            "name": "res"
+                                        }
+                                    ],
+                                    "resultTo": null
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

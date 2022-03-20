@@ -13,7 +13,8 @@ const projectStructure = {
     models: ['User'],
     services: ['UserService'],
     routers: ['UserRouter'],
-    controllers: ['UserController'],
+    controllers: ['UserController', 'AuthController'],
+
 };
 
 const direcotiresOfProject = Object.keys(projectStructure);
