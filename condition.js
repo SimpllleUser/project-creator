@@ -17,9 +17,7 @@ const conditionBodyTypes = {
         return actions.map(({ model }) => generateCallMethodFromModel(model)).join(';')
     },
     "actions-controller": (actions) => {
-        return actions.map(({ service }) => {
-            return generateCallMethodFromService(service);
-        }).join(';')
+        return actions.map(({ service }) => generateCallMethodFromService(service)).join(';')
     },
 }
 
