@@ -9,24 +9,17 @@ const getArgumnet = (parameterArgument) => typeOfArguments[parameterArgument.typ
 const getMethodTypes = (types) => types.join(' ');
 const getMethodArguments = (types) => types.map((argumentOption) => getArgumnet(argumentOption)).join(',');
 
-const generateCallMethodFromModel = ({ name, method }) => {
-     const result = getResultOfMethod(method.resultTo);
-     const type = getMethodTypes(method.types);
-     const serviceMethodName = method.name;
-     const args = getMethodArguments(method.params);
- 
-     return `${result} ${type} database.${name}.${serviceMethodName}(${args});\n`;
-};
-
-const generateCallMethodFromService = ({ name, method }) => {
+const generateCallMethodsFromTypeEntity = ({ name, method }) => (typeEntityName) => {
     const result = getResultOfMethod(method.resultTo);
     const type = getMethodTypes(method.types);
-    const serviceName = name;
     const serviceMethodName = method.name;
     const args = getMethodArguments(method.params);
 
-    return `${result} ${type} ${serviceName}.${serviceMethodName}(${args});\n`;
-};
+    return `${result} ${type} ${typeEntityName}.${serviceMethodName}(${args});\n`;
+}
+
+const generateCallMethodFromModel = (params) => generateCallMethodsFromTypeEntity(params)(`database.${params.name}`);
+const generateCallMethodFromService = (params) => generateCallMethodsFromTypeEntity(params)(params.name);
 
 const getResultOfMethod = (resultTo) => {
     if (!resultTo) return 'return';
