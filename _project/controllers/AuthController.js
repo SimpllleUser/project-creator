@@ -7,8 +7,8 @@
  
         class AuthController{
             
-    static async login(req,res) {
-        try {
+     static async login(req,res) {
+         try {
      const theUser =  await UserService.getOneByUserName(req.body.username);
 
     if(theUser) {

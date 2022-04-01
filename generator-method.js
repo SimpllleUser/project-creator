@@ -1,5 +1,5 @@
 const { generateCondition } = require('./condition');
-const { 
+const {
     generateCallMethodFromModel,
     generateCallMethodFromService,
     getMethodArguments,
@@ -13,30 +13,17 @@ const typeGeneratesCode = {
     "service": generateCallMethodFromService,
 };
 
-const generateServiceMethod = ({
-    name,
-    types,
-    params,
-    actions }) => {
-    const calledActions = actions
-        .map((action) => typeGeneratesCode[action.type](action[action.type]))
-        .join('');
-return `
-    ${getMethodTypes(types)} ${name}(${getMethodArguments(params)}) {
-        ${tryCatchWrapper(calledActions)}}`;
+const getCalledActions = (actions) => actions.map((action) => typeGeneratesCode[action.type](action[action.type])).join('');
+
+const generateCallMethodFromEntity = ({ name,types,params, actions }) => (wrapper) => {
+    const calledActions = getCalledActions(actions);
+    return `
+     ${getMethodTypes(types)} ${name}(${getMethodArguments(params)}) {
+         ${wrapper(calledActions)}}`;
 }
-const generateControllerMethod = ({
-    name,
-    types,
-    params,
-    actions }) => {
-    const calledActions = actions
-        .map((action) => typeGeneratesCode[action.type](action[action.type]))
-        .join('');
-return `
-    ${getMethodTypes(types)} ${name}(${getMethodArguments(params)}) {
-        ${controllerTryCatchWrapper(calledActions)}}`;
-}
+
+const generateServiceMethod = (serviceParams) => generateCallMethodFromEntity(serviceParams)(tryCatchWrapper);
+const generateControllerMethod = (serviceParams) => generateCallMethodFromEntity(serviceParams)(controllerTryCatchWrapper);
 
 module.exports = {
     generateServiceMethod,
