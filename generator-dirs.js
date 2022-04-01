@@ -1,5 +1,5 @@
 const { getMkdirPath } = require('./utils');
-const { recourceFromPath, direcotiresOfProject } = require('./constants');
+const { recourceFromPath, direcotiresOfProject } = require('./generator-project-structure');
 const { mkdirs } = require('fs-extra');
 
 const generateProjectDirs = async () => {

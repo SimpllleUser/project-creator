@@ -12,7 +12,7 @@ const projectStructure = {
     utils: ['AuthUtils', 'Logger', 'Utils'],
     models: ['User'],
     services: ['UserService'],
-    routers: ['UserRouter'],
+    routes: ['UserRoutes', 'AuthRoutes'],
     controllers: ['UserController', 'AuthController'],
 
 };

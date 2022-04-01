@@ -3,7 +3,7 @@ const { readFile, writeFile } = require('fs').promises;
 const { getPathJoin, getBodyPath } = require('./utils');
 
 const { genrateByKeyObject } = require('./generator-utils');
-const { recource, projectStructure, direcotiresOfProject } = require('./constants')
+const { recource, projectStructure, direcotiresOfProject } = require('./generator-project-structure')
 
 const generateCode = async (pathFromFile, fileName) => {
     const configConstant = await readFile(getPathJoin(pathFromFile), { type: 'utf8' });
