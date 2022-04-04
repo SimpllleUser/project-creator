@@ -1,7 +1,10 @@
 {
     "source-code": {
         "imports": [
-            "import dotenv from 'dotenv'"
+            {
+                "type": "global",
+                "name": "dotenv"
+            }
         ],
         "init-module": ["dotenv.config()"],
         "export-default": {

@@ -1,10 +1,13 @@
 {
     "source-code": {
         "imports": [
-            "import { Router } from 'express'",
-            "import AuthController from '../controllers/AuthController'"
+            {
+                "type": "controller",
+                "name": "AuthController"
+            }
         ],
         "init-module": [
+            "import { Router } from 'express'",
             "const router = Router()"
         ],
         "routers": [

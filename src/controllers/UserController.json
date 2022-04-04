@@ -1,9 +1,18 @@
 {
     "source-code": {
         "imports": [
-            "import UserService from '../services/UserService'",
-            "import Util from '../utils/Utils'",
-            "import AuthUtils from '../utils/AuthUtils'"
+            {
+                "type": "service",
+                "name": "UserService"
+            },
+            {
+                "type": "util",
+                "name": "Util"
+            },
+            {
+                "type": "util",
+                "name": "AuthUtils"
+            }
         ],
         "init-module": [
             "const util = new Util()"

@@ -1,7 +1,12 @@
 {
     "source-code": {
         "imports": [
-            "import winston from 'winston'",
+            {
+                "type": "global",
+                "name": "winston"
+            }
+        ],
+        "init-module": [
             "import config from '../config/config'",
             "import constants from '../config/constants'",
             "export const logger = configureWinstonLogger()"
