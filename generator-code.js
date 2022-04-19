@@ -13,12 +13,12 @@ const generateCode = async (pathFromFile, fileName) => {
     await writeFile(fileName, codeString);
 };
 
-const runGeneratorCode = () => {
+const runGeneratorCode = (title) => {
     try {
     Promise.all(direcotiresOfProject.map(async (dirName) => {
         Promise.all(projectStructure[dirName].map((fileName) => {
             const bodyPath = getBodyPath(dirName, fileName);
-            generateCode(`${recource.from}${bodyPath}.json`, `${recource.to}${bodyPath}.js`)
+            generateCode(`${recource.from}${bodyPath}.json`, `${title}${bodyPath}.js`)
         }));
     }));
 } catch(err) {

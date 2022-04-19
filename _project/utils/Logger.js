@@ -1,5 +1,5 @@
+ import winston from "winston" 
   
- import winston from 'winston'; 
  import config from '../config/config'; 
  import constants from '../config/constants'; 
  export const logger = configureWinstonLogger(); 

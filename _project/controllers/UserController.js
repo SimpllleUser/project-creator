@@ -1,7 +1,6 @@
-  
- import UserService from '../services/UserService'; 
- import Util from '../utils/Utils'; 
- import AuthUtils from '../utils/AuthUtils'; 
+ import UserService from "../service/UserService";
+import Util from "../utils/Util";
+import AuthUtils from "../utils/AuthUtils" 
   
  const util = new Util(); 
  

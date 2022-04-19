@@ -1,6 +1,6 @@
+ import bcrypt from "bcrypt";
+import jwt from "jwt" 
   
- import bcrypt from 'bcrypt'; 
- import jwt from 'jsonwebtoken'; 
  import config from '../config/config'; 
  export default class AuthUtils {
   static async generatePasswordHash(password) {

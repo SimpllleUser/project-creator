@@ -1,13 +1,12 @@
+ import dotenv from "dotenv";
+import path from "path";
+import fs from "fs" 
   
- import dotenv from 'dotenv'; 
- dotenv.config(); 
- import fs from 'fs'; 
- import path from 'path'; 
- import Sequelize from 'sequelize'; 
  import db_config from './config'; 
  import global_config from '../config/config'; 
  import constants from '../config/constants'; 
-  
+ import Sequelize from 'sequelize'; 
+ dotenv.config(); 
  const basename = path.join(__dirname, '../models'); 
  const db = {}; 
  let sequelize;
