@@ -13,7 +13,7 @@ const generateCode = async (pathFromFile, fileName) => {
     await writeFile(fileName, codeString);
 };
 
-const runGeneratorCode = (title) => {
+const runGeneratorCode = ({ title }) => {
     try {
     Promise.all(direcotiresOfProject.map(async (dirName) => {
         Promise.all(projectStructure[dirName].map((fileName) => {
