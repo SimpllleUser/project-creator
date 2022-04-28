@@ -8,13 +8,11 @@ const generateConfigProject = async ({ id, title, description }) => {
     const packagePath = getPathJoin(`/${title}/package.json`);
     const envBody = `PORT=${id}`
     const envPath = getPathJoin(`/${title}/.env`);
+    const DBPath = getPathJoin(`/${title}/db/db.sqlite`);
     await writeFile(packagePath, configBody);
     await writeFile(envPath, envBody);
+    await writeFile(DBPath,'');
 };
-
-// (async () => {
-//     await generateConfigProject({ id: 12, title: 'some', description: '!!!!!!!!!!!!!!!' });
-// })()
 
 module.exports = {
     generateConfigProject,
