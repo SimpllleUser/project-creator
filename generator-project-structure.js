@@ -6,15 +6,16 @@ const recource = {
     to: '_project',
 };
 
+const filteredFiles = (listDirectories) => listDirectories.filter((list) => !list.includes('db'))
+
 const getProjectStructure = () => {
     const filesStructure = dirTree(recource.from);
-    console.log(filesStructure);
     const getFileNameFromDirectory = ({ name }) => name.split('.')[0];
-    return filesStructure.children.reduce((acc,  curr) => {
+    return filesStructure.children.reduce((acc, curr) => {
         const existChildren = curr?.children?.length;
         const key = existChildren ? curr.name : 'is-src';
         const filesDirectory = existChildren ? curr.children.map(getFileNameFromDirectory) : [curr.name.split('.')[0]];
-        return {...acc, ...{ [key]: filesDirectory }};
+        return { ...acc, ...{ [key]: filteredFiles(filesDirectory) } };
     }, {});
 };
 

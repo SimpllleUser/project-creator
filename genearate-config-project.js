@@ -1,5 +1,6 @@
 const { writeFile } = require('fs').promises;
 const { getPathJoin } = require('./utils');
+const { generateDB } = require('./generate-db');
 const { config } = require('./package-config');
 
 
@@ -11,7 +12,7 @@ const generateConfigProject = async ({ id, title, description }) => {
     const DBPath = getPathJoin(`/${title}/db/db.sqlite`);
     await writeFile(packagePath, configBody);
     await writeFile(envPath, envBody);
-    await writeFile(DBPath,'');
+    await generateDB({ title });
 };
 
 module.exports = {
