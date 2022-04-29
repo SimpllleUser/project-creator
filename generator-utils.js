@@ -7,7 +7,7 @@ const { generateImports } = require('./genrator-import');
 
 // const generateImports = arrayToLinesCode;
 const generateInitImports = generateImports;
-const generateModuleExport = (json) => `export default ${JSONtoStringJSON(json)};`;
+const generateModuleExport = (json) => `module.exports = ${JSONtoStringJSON(json)};`;
 const generateStaticCode = (string) => `${string}`;
 
 const genrateByKeyObject = {

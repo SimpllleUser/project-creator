@@ -1,15 +1,15 @@
 const getImport = ({ type, name }) => {
     const typesByPath = {
         'global': '',
-        'service': 'service',
+        'service': 'services',
         'controller': 'controllers',
         'database': 'db',
         'model': 'models',
         'route': 'routes',
         'util': 'utils',
     };
-    if (type === 'global') return `import ${name} from "${name}"`
-    return `import ${name} from "../${typesByPath[type]}/${name}"`;
+    if (type === 'global') return `const ${name} = require("${name}");`
+    return `const ${name} = require("../${typesByPath[type]}/${name}")`;
 };
 
 const generateImports = (imports) => {

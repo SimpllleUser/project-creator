@@ -5,14 +5,8 @@ const config = JSON.parse(
         "description": "your awesome project",
         "main": "index.js",
         "scripts": {
-            "dev": "nodemon --exec babel-node ./src/app.js",
-            "build": "rm -rf ./build && babel -d ./build ./src -s",
+            "dev": "nodemon --exec babel-node app.js",
             "db:migrate": "npx sequelize-cli db:migrate",
-            "test": "export NODE_ENV=test &&  npx sequelize db:migrate:undo:all  && npx sequelize db:migrate  && nyc --require @babel/register  mocha ./test/users.js --timeout 20000 --exit",
-            "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
-            "coveralls-coverage": "coveralls < lcov.info",
-            "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
-            "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
         },
         "keywords": [],
         "author": "",
@@ -53,6 +47,7 @@ const config = JSON.parse(
             "npm": ">= 6.0.0",
             "node": ">= 13.0.0"
         }
+
     })
 );
 

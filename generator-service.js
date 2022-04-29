@@ -9,7 +9,7 @@ const generateService = ({ name, methods }) => {
         class ${name}{
             ${serviceMethods}
         }
-        export default ${name};
+        module.exports = ${name};
 
     `;
 };

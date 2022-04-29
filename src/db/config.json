@@ -2,15 +2,12 @@
     "source-code": {
         "export-default": {
             "development": {
-                "database": "'dev_db'",
-                "username": "'db_user'",
-                "password": null,
+                "host": "'0.0.0.0'",
                 "dialect": "'sqlite'",
-                "storage": "':memory'",
-                "dialectOption": {
-                    "ssl": true,
-                    "native": true
-                }
+                "pool": "{max: 5,min: 0,idle: 10000,}",
+                "storage": "'./db.sqlite'",
+                "models": [],
+                "autoLoadModels": "true"
             },
             "test": {
                 "database": "'test_db'",

@@ -8,7 +8,7 @@ const generateController = ({ name, methods }) => {
         class ${name}{
             ${controllerMethods}
         }
-        export default ${name};`;
+        module.exports = ${name};`;
 };
 
 module.exports = {

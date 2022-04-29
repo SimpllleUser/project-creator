@@ -5,7 +5,7 @@ const projectStructure = {
     models: ['User'],
     routes: ['AuthRoutes', 'UserRoutes'],
     services: ['UserService'],
-    utils: ['AuthUtils', 'Logger', 'Utils']
+    utils: ['AuthUtils', 'Logger', 'Util']
 };
 
 const importFiles = [
@@ -22,7 +22,7 @@ const importFiles = [
 const getImportsModule = ({ type, name }) => {
     const typesByPath = {
         'global': '',
-        'service': './service/',
+        'service': './services/',
         'controller': './controllers/',
         'database': './db/',
         'model': './models/',

@@ -52,6 +52,6 @@
                 }
             }
         ],
-        "static-code": "export default router;"
+        "static-code": "module.exports = router;"
     }
 }
