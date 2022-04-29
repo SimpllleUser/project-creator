@@ -8,6 +8,7 @@ const recource = {
 
 const getProjectStructure = () => {
     const filesStructure = dirTree(recource.from);
+    console.log(filesStructure);
     const getFileNameFromDirectory = ({ name }) => name.split('.')[0];
     return filesStructure.children.reduce((acc,  curr) => {
         const existChildren = curr?.children?.length;

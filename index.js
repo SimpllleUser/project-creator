@@ -9,7 +9,9 @@ const generatorMethods = [
     generateConfigProject,
     generateDB,
 ];
-const runGenerateProject = (project) => Promise.all(generatorMethods.map(async (method) => await method(project)));
+const runGenerateProject = (project) => Promise.all(
+    generatorMethods.map(async (method) => await method(project))
+);
 
 // (async () => {
 //     const project = { id: 1111, title: 'Some-title', description: 'Some-description' }
